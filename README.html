@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실습실 통합 양식 사용 안내</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap">
+<style>
+  :root {
+    --accent: #1A3A6B;
+    --accent2: #2563b0;
+    --bg: #f5f6fa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --secondary: #5a6480;
+    --border: #d0d8e8;
+    --warn: #c0392b;
+    --warn-bg: #fff3cd;
+    --success: #1a7a4a;
+    --success-bg: #e8f5ee;
+    --tag-bg: #e8eef8;
+    --tag-text: #1A3A6B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12172a; --card: #1c2340; --text: #e8eaf0;
+      --secondary: #8898bb; --border: #2d3a5a;
+      --warn-bg: #3d2000; --success-bg: #0d2e1c;
+      --tag-bg: #1e2d50; --tag-text: #93b4e8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12172a; --card: #1c2340; --text: #e8eaf0;
+    --secondary: #8898bb; --border: #2d3a5a;
+    --warn-bg: #3d2000; --success-bg: #0d2e1c;
+    --tag-bg: #1e2d50; --tag-text: #93b4e8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nanum Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0 16px 60px;
+  }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #1A3A6B 0%, #2563b0 100%);
+    color: #fff;
+    padding: 44px 32px 36px;
+    margin: 0 -16px 36px;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  /* Wrapper */
+  .wrap { max-width: 720px; margin: 0 auto; }
+  /* Section */
+  .sec { margin-bottom: 32px; }
+  .sec-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  /* Card */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+  }
+  /* Tab table */
+  .tab-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .tab-table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .tab-table th:first-child { border-radius: 6px 0 0 0; }
+  .tab-table th:last-child  { border-radius: 0 6px 0 0; }
+  .tab-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .tab-table tr:last-child td { border-bottom: none; }
+  .tab-table tr:nth-child(even) td { background: var(--tag-bg); }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-before { background: #dbeafe; color: #1e40af; }
+  .badge-after  { background: #fee2e2; color: #991b1b; }
+  /* Step list */
+  .steps { counter-reset: step; list-style: none; }
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .steps li::before {
+    content: counter(step);
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .steps li p { font-size: 14px; }
+  .steps li strong { color: var(--accent2); }
+  /* Button pill */
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: 1.5px solid transparent;
+  }
+  .bp-save    { background: #e8f5ee; border-color: #1a7a4a; color: #1a7a4a; }
+  .bp-load    { background: #e8eef8; border-color: var(--accent2); color: var(--accent2); }
+  .bp-print   { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .bp-reset   { background: var(--bg); border-color: var(--border); color: var(--secondary); }
+  /* Feature grid */
+  .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 500px) { .feat-grid { grid-template-columns: 1fr; } }
+  .feat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .feat-icon { font-size: 22px; margin-bottom: 6px; }
+  .feat-name { font-size: 13px; font-weight: 800; margin-bottom: 4px; color: var(--accent2); }
+  .feat-desc { font-size: 12px; color: var(--secondary); line-height: 1.5; }
+  /* Warning box */
+  .warn-box {
+    background: var(--warn-bg);
+    border: 1.5px solid var(--warn);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--warn);
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .warn-box .wt { font-size: 14px; margin-bottom: 4px; }
+  /* Notice box */
+  .notice-box {
+    background: var(--success-bg);
+    border: 1px solid #a3d9b8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--success);
+    margin-bottom: 12px;
+  }
+  /* Tag */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  /* Equip note */
+  .equip-note {
+    font-size: 12px;
+    color: var(--warn);
+    margin-top: 4px;
+  }
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .contact-role { font-size: 11px; color: var(--secondary); margin-bottom: 4px; }
+  .contact-name { font-size: 14px; font-weight: 800; color: var(--text); }
+  .contact-tel  { font-size: 13px; color: var(--accent2); margin-top: 4px; font-weight: 700; }
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--secondary);
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  p { font-size: 14px; }
+  @media print {
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">원광대학교 한의과대학 · 경혈학교실 / 임상술기센터</div>
+  <h1>실습실 통합 양식 사용 안내</h1>
+  <div class="hero-sub">파일명: 실습실_통합양식.html &nbsp;|&nbsp; 브라우저에서 열어 바로 사용</div>
+</div>
+
+<div class="wrap">
+
+  <!-- 개요 -->
+  <div class="sec">
+    <div class="sec-title">개요</div>
+    <div class="card">
+      <p>5개 신청서·결과보고서를 하나의 HTML 파일로 통합한 양식입니다. 인터넷 연결 없이 브라우저(Chrome · Edge · Safari)에서 바로 열어 작성, 임시저장, 인쇄 및 PDF 저장이 가능합니다.</p>
+    </div>
+  </div>
+
+  <!-- 탭 구성 -->
+  <div class="sec">
+    <div class="sec-title">탭 구성</div>
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="tab-table">
+        <thead>
+          <tr>
+            <th style="width:40px;">탭</th>
+            <th>양식명</th>
+            <th style="width:120px;">제출 시점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>①</td>
+            <td>공동실습실1 사용 신청서</td>
+            <td><span class="badge badge-before">사용 전</span></td>
+          </tr>
+          <tr>
+            <td>②</td>
+            <td>임상술기센터 사용 신청서</td>
+            <td><span class="badge badge-before">사용 전</span></td>
+          </tr>
+          <tr>
+            <td>③</td>
+            <td>공동실습 사용 결과 보고서</td>
+            <td><span class="badge badge-after">사용 후 필수</span></td>
+          </tr>
+          <tr>
+            <td>④</td>
+            <td>초음파영상장비 사용신청서</td>
+            <td><span class="badge badge-before">사용 전</span></td>
+          </tr>
+          <tr>
+            <td>⑤</td>
+            <td>초음파영상장비 사용 결과보고서</td>
+            <td><span class="badge badge-after">사용 후 필수</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 기본 사용법 -->
+  <div class="sec">
+    <div class="sec-title">기본 사용법</div>
+    <ul class="steps">
+      <li><p><strong>파일 열기</strong> — <code>실습실_통합양식.html</code>을 더블클릭하거나 브라우저로 드래그하여 엽니다.</p></li>
+      <li><p><strong>탭 선택</strong> — 상단 탭 버튼을 클릭하여 해당 신청서로 이동합니다.</p></li>
+      <li><p><strong>양식 작성</strong> — 각 항목을 빠짐없이 입력합니다. <span class="tag">*</span> 표시 항목은 필수 입력란입니다.</p></li>
+      <li><p><strong>임시저장</strong> — 작성 중 💾 임시저장 버튼으로 내용을 저장해두면, 다음에 같은 파일을 열었을 때 📂 불러오기로 복원할 수 있습니다.</p></li>
+      <li><p><strong>저장 및 인쇄</strong> — 🖨 저장 및 인쇄 버튼을 클릭하면 임시저장 후 인쇄 창이 열립니다. 프린터 대신 <strong>PDF로 저장</strong>을 선택하면 PDF 파일로 저장됩니다.</p></li>
+    </ul>
+  </div>
+
+  <!-- 하단 버튼 안내 -->
+  <div class="sec">
+    <div class="sec-title">하단 버튼 안내</div>
+    <div class="btn-row">
+      <span class="btn-pill bp-save">💾 임시저장</span>
+      <span class="btn-pill bp-load">📂 불러오기</span>
+      <span class="btn-pill bp-print">🖨 저장 및 인쇄</span>
+      <span class="btn-pill bp-reset">↺ 양식 초기화</span>
+    </div>
+    <div class="feat-grid" style="margin-top:14px;">
+      <div class="feat">
+        <div class="feat-icon">💾</div>
+        <div class="feat-name">임시저장</div>
+        <div class="feat-desc">현재 탭의 입력 내용을 브라우저에 저장합니다. 탭별로 독립 저장되며, 저장 시각이 표시됩니다.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📂</div>
+        <div class="feat-name">불러오기</div>
+        <div class="feat-desc">마지막으로 임시저장한 내용을 복원합니다. 저장본이 없으면 안내 메시지가 표시됩니다.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🖨</div>
+        <div class="feat-name">저장 및 인쇄</div>
+        <div class="feat-desc">임시저장 후 인쇄 창을 실행합니다. PDF 저장도 이 버튼으로 진행합니다.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">↺</div>
+        <div class="feat-name">양식 초기화</div>
+        <div class="feat-desc">현재 탭의 모든 입력 내용과 임시저장 데이터를 삭제합니다.</div>
+      </div>
+    </div>
+    <div class="notice-box" style="margin-top:14px;">
+      💡 <strong>임시저장 주의사항</strong> — 저장 데이터는 <strong>같은 브라우저·같은 파일</strong>에서만 유지됩니다. 브라우저 캐시 삭제, 시크릿 모드, 다른 기기에서는 불러올 수 없습니다.
+    </div>
+  </div>
+
+  <!-- 초음파 장비 안내 -->
+  <div class="sec">
+    <div class="sec-title">초음파 장비 사용 안내</div>
+    <div class="card">
+      <p style="margin-bottom:10px;">초음파영상장비 사용 시 아래 절차를 반드시 준수하세요.</p>
+      <ul class="steps">
+        <li><p><strong>사용신청서(탭 ④) 작성 및 제출</strong> — 사용 전 반드시 제출하고 담당 조교의 승인을 받아야 합니다.</p></li>
+        <li><p><strong>장비 사용</strong> — 승인된 장비만 사용하며, 사용 중 이상 발생 시 즉시 담당자에게 보고합니다.</p></li>
+        <li><p><strong>결과보고서(탭 ⑤) 작성 및 제출</strong> — 사용 종료 후 반드시 제출합니다.</p></li>
+      </ul>
+      <div style="margin-top:12px; padding:12px 14px; background:var(--bg); border-radius:6px; border:1px solid var(--border);">
+        <div class="tag">특별 조건</div>
+        <p style="margin-top:6px; font-weight:700;">삼성메디슨 / HS50</p>
+        <p class="equip-note">방과후 개별 사용 금지 · 진단학교실 사용 허가 조건</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 미제출 시 불이익 -->
+  <div class="sec">
+    <div class="sec-title">결과보고서 미제출 시 불이익</div>
+    <div class="warn-box">
+      <div class="wt">⚠ 공동실습실1</div>
+      공동실습실1 사용 결과 보고서를 제출하지 않은 경우, 추후 실습실 이용에 제한을 받습니다.
+    </div>
+    <div class="warn-box">
+      <div class="wt">⚠ 초음파영상장비</div>
+      사용 결과 보고서 미제출 시 추후 장비 사용에 제한이 있을 수 있습니다.
+    </div>
+  </div>
+
+  <!-- 제출 방법 -->
+  <div class="sec">
+    <div class="sec-title">제출 방법</div>
+    <div class="card">
+      <p>인쇄 후 직접 제출하거나, PDF로 저장하여 경혈학교실 조교 및 담당자에게 이메일로 제출하세요.</p>
+    </div>
+  </div>
+
+  <!-- 문의 -->
+  <div class="sec">
+    <div class="sec-title">문의</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-role">경혈학교실 조교</div>
+        <div class="contact-name">담당 조교</div>
+        <div class="contact-tel">☎ 063-850-6448</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">경혈학교실 관리자</div>
+        <div class="contact-name">김재효 교수</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">임상술기센터 관리자</div>
+        <div class="contact-name">임정태 교수</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    원광대학교 한의과대학 · 경혈학교실 &nbsp;|&nbsp; 실습실 통합 양식 사용 안내
+  </div>
+
+</div>
+</body>
+</html>
