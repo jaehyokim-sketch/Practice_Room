@@ -2279,6 +2279,7 @@ table.chk tr.important .imp-badge {
             <tr>
               <th style="width:36px;">탭</th>
               <th>양식명</th>
+              <th>필수 항목</th>
               <th style="width:120px;">제출 시점</th>
             </tr>
           </thead>
@@ -2286,26 +2287,31 @@ table.chk tr.important .imp-badge {
             <tr>
               <td>①</td>
               <td>공동실습실1 사용 신청서</td>
+              <td>신청일자, 소속, 대표자</td>
               <td><span class="g-badge g-badge-before">사용 전</span></td>
             </tr>
             <tr>
               <td>②</td>
               <td>임상술기센터 사용 신청서</td>
+              <td>신청일자, 소속, 대표자</td>
               <td><span class="g-badge g-badge-before">사용 전</span></td>
             </tr>
             <tr>
               <td>③</td>
               <td>공동실습실1 사용 결과 보고서</td>
+              <td>확인 항목 (예/아니오)</td>
               <td><span class="g-badge g-badge-after">사용 후 필수</span></td>
             </tr>
             <tr>
               <td>④</td>
               <td>초음파영상장비 사용신청서</td>
+              <td>신청일자, 소속, 신청인</td>
               <td><span class="g-badge g-badge-before">사용 전</span></td>
             </tr>
             <tr>
               <td>⑤</td>
               <td>초음파영상장비 사용 결과보고서</td>
+              <td>사용자 정보, 지도 교수</td>
               <td><span class="g-badge g-badge-after">사용 후 필수</span></td>
             </tr>
           </tbody>
@@ -2361,34 +2367,92 @@ table.chk tr.important .imp-badge {
       </div>
     </div>
 
+    <!-- 공동실습실1 결과보고서 안내 -->
+    <div class="g-sec">
+      <div class="g-sec-title">공동실습실1 사용 결과 보고서 작성 안내</div>
+      <div class="g-card">
+        <p style="margin-bottom:10px; font-size:13.5px;">공동실습실1 사용 후 필수로 작성해야 하는 보고서입니다.</p>
+        <ul class="g-steps">
+          <li><p><strong>작성 시점</strong> — 실습실 이용 종료 후 지체 없이 작성합니다.</p></li>
+          <li><p><strong>확인 항목</strong> — 5개 항목을 예(✓) 또는 아니오(○)로 확인하며, <strong>모든 항목이 필수입니다</strong>.</p></li>
+          <li><p><strong>확인 내용</strong> — 기자재 상태 확인, 소독 진행, 쓰레기 분리, 정리정돈, 조명·난방 확인</p></li>
+          <li><p><strong>제출</strong> — 완성 후 담당 조교 또는 경혈학교실에 제출합니다.</p></li>
+        </ul>
+        <div style="margin-top:12px; padding:12px 14px; background:var(--section-bg); border-radius:6px; border:1px solid var(--border);">
+          <span class="g-tag">주의</span>
+          <p style="margin-top:6px; font-size:13.5px;">결과 보고서를 제출하지 않은 경우, <strong>추후 실습실 이용에 제한</strong>을 받을 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- 초음파 장비 안내 -->
     <div class="g-sec">
       <div class="g-sec-title">초음파 장비 사용 안내</div>
       <div class="g-card">
         <p style="margin-bottom:10px; font-size:13.5px;">초음파영상장비 사용 시 아래 절차를 반드시 준수하세요.</p>
         <ul class="g-steps">
-          <li><p><strong>사용신청서(탭 ④) 작성 및 제출</strong> — 사용 전 반드시 제출하고 담당 조교의 승인을 받아야 합니다.</p></li>
+          <li><p><strong>사용신청서(탭 ④) 작성 및 제출</strong> — <strong>필수 항목(신청일자, 소속, 신청인)</strong>을 입력하고 사용 전 반드시 제출하여 담당 조교의 승인을 받아야 합니다.</p></li>
           <li><p><strong>장비 사용</strong> — 승인된 장비만 사용하며, 사용 중 이상 발생 시 즉시 담당자에게 보고합니다.</p></li>
-          <li><p><strong>결과보고서(탭 ⑤) 작성 및 제출</strong> — 사용 종료 후 반드시 제출합니다.</p></li>
+          <li><p><strong>결과보고서(탭 ⑤) 작성 및 제출</strong> — 사용 종료 후 <strong>사용자 정보와 지도 교수</strong>를 기입하여 반드시 제출합니다.</p></li>
         </ul>
         <div style="margin-top:12px; padding:12px 14px; background:var(--section-bg); border-radius:6px; border:1px solid var(--border);">
           <span class="g-tag">특별 조건</span>
           <p style="margin-top:6px; font-weight:700; font-size:13.5px;">삼성메디슨 / HS50</p>
-          <p class="g-equip-note">방과후 개별 사용 금지 · 진단학교실 사용 허가 조건</p>
+          <p class="g-equip-note">🚫 방과후 개별 사용 금지 (진단학교실 사용 허가 조건)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 중요 체크리스트 -->
+    <div class="g-sec">
+      <div class="g-sec-title">✓ 신청·제출 체크리스트</div>
+      <div class="g-card">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div style="padding:10px; background:#f0f4ff; border-radius:6px; border-left:4px solid #4f46e5;">
+            <div style="font-weight:600; font-size:13px; color:#4f46e5; margin-bottom:6px;">📋 공동실습실1</div>
+            <ul style="margin:0; padding-left:16px; font-size:12px;">
+              <li>신청일자, 소속, 대표자 필수</li>
+              <li>사용 전 신청서 제출</li>
+              <li>사용 후 결과 보고서 제출 필수</li>
+            </ul>
+          </div>
+          <div style="padding:10px; background:#fef0f5; border-radius:6px; border-left:4px solid #d946ef;">
+            <div style="font-weight:600; font-size:13px; color:#d946ef; margin-bottom:6px;">🔬 임상술기센터</div>
+            <ul style="margin:0; padding-left:16px; font-size:12px;">
+              <li>신청일자, 소속, 대표자 필수</li>
+              <li>사용 전 신청서 제출</li>
+            </ul>
+          </div>
+          <div style="padding:10px; background:#f0fdf4; border-radius:6px; border-left:4px solid #16a34a;">
+            <div style="font-weight:600; font-size:13px; color:#16a34a; margin-bottom:6px;">🔊 초음파 신청서</div>
+            <ul style="margin:0; padding-left:16px; font-size:12px;">
+              <li>신청일자, 소속, 신청인 필수</li>
+              <li>사용 전 신청서 제출</li>
+              <li>담당자 승인 필수</li>
+            </ul>
+          </div>
+          <div style="padding:10px; background:#fef5f1; border-radius:6px; border-left:4px solid #ea580c;">
+            <div style="font-weight:600; font-size:13px; color:#ea580c; margin-bottom:6px;">🔊 초음파 결과보고</div>
+            <ul style="margin:0; padding-left:16px; font-size:12px;">
+              <li>사용자 정보 필수</li>
+              <li>지도 교수 필수</li>
+              <li>사용 후 결과 제출 필수</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- 미제출 시 불이익 -->
     <div class="g-sec">
-      <div class="g-sec-title">결과보고서 미제출 시 불이익</div>
+      <div class="g-sec-title">⚠ 결과보고서 미제출 시 불이익</div>
       <div class="g-warn-box">
-        <strong>⚠ 공동실습실1</strong><br>
-        공동실습실1 사용 결과 보고서를 제출하지 않은 경우, 추후 실습실 이용에 제한을 받습니다.
+        <strong>🚫 공동실습실1</strong><br>
+        사용 결과 보고서를 제출하지 않은 경우, <strong style="color:#d33652;">추후 실습실 이용에 제한</strong>을 받습니다.
       </div>
       <div class="g-warn-box">
-        <strong>⚠ 초음파영상장비</strong><br>
-        사용 결과 보고서 미제출 시 추후 장비 사용에 제한이 있을 수 있습니다.
+        <strong>🚫 초음파영상장비</strong><br>
+        사용 결과 보고서를 미제출한 경우, <strong style="color:#d33652;">추후 장비 사용에 제한</strong>이 있을 수 있습니다.
       </div>
     </div>
 
