@@ -194,6 +194,75 @@ body {
 }
 
 /* ─── Notice bars ─── */
+/* ─── Lab Manual Banner ─── */
+.lab-manual-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+  border: 2px solid #facc15;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.2);
+}
+.manual-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.manual-content {
+  flex: 1;
+}
+.manual-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 4px;
+}
+.manual-desc {
+  font-size: 13px;
+  color: #b45309;
+  margin-bottom: 10px;
+}
+.manual-btn {
+  padding: 8px 14px;
+  background: #f59e0b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.manual-btn:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
+}
+.manual-btn:active {
+  transform: translateY(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .lab-manual-banner {
+    background: linear-gradient(135deg, #854d0e 0%, #92400e 100%);
+    border-color: #d97706;
+  }
+  :root:not([data-theme="light"]) .manual-title { color: #fef08a; }
+  :root:not([data-theme="light"]) .manual-desc { color: #fcd34d; }
+  :root:not([data-theme="light"]) .manual-btn { background: #d97706; }
+  :root:not([data-theme="light"]) .manual-btn:hover { background: #f59e0b; }
+}
+:root[data-theme="dark"] .lab-manual-banner {
+  background: linear-gradient(135deg, #854d0e 0%, #92400e 100%);
+  border-color: #d97706;
+}
+:root[data-theme="dark"] .manual-title { color: #fef08a; }
+:root[data-theme="dark"] .manual-desc { color: #fcd34d; }
+:root[data-theme="dark"] .manual-btn { background: #d97706; }
+:root[data-theme="dark"] .manual-btn:hover { background: #f59e0b; }
+
 .notice {
   background: var(--section-bg);
   border-left: 4px solid var(--accent);
@@ -798,6 +867,51 @@ table.chk tr.important .imp-badge {
 /* ══════════════════════════════
    사용 안내 패널 (Guide Panel)
 ══════════════════════════════ */
+/* ─── Guide tab system ─── */
+.guide-tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  padding: 0;
+  margin: 0;
+}
+.guide-tab-btn {
+  flex: 1;
+  padding: 16px 20px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.guide-tab-btn:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+.guide-tab-btn.active {
+  color: #3730a3;
+  border-bottom-color: #3730a3;
+  background: transparent;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .guide-tab-btn.active { color: #a5b4fc; border-bottom-color: #a5b4fc; }
+}
+:root[data-theme="dark"] .guide-tab-btn.active { color: #a5b4fc; border-bottom-color: #a5b4fc; }
+
+.guide-tab-content {
+  display: none !important;
+}
+.guide-tab-content.active {
+  display: block !important;
+}
+.guide-tab-content.active .g-wrap {
+  display: block !important;
+}
+
 .guide-panel {
   padding: 0;
 }
@@ -1143,6 +1257,45 @@ table.chk tr.important .imp-badge {
 }
 :root[data-theme="dark"] .cal-title { color: #a5b4fc; }
 .cal-sub { font-size: 12.5px; color: var(--secondary); margin-top: 2px; }
+.cal-tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  margin: 0 -24px 20px -24px;
+}
+.cal-tab-btn {
+  flex: 1;
+  padding: 14px 12px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+.cal-tab-btn:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+.cal-tab-btn.active {
+  color: #3730a3;
+  border-bottom-color: #3730a3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cal-tab-btn.active { color: #a5b4fc; border-bottom-color: #a5b4fc; }
+}
+:root[data-theme="dark"] .cal-tab-btn.active { color: #a5b4fc; border-bottom-color: #a5b4fc; }
+
+.cal-tab-content {
+  display: none;
+}
+.cal-tab-content.active {
+  display: block;
+}
+
 .cal-wrap {
   width: 100%;
   overflow: hidden;
@@ -1360,6 +1513,17 @@ table.chk tr.important .imp-badge {
     <p><span class="blink-warn">⚠ 공동실습실1 사용 결과 보고서를 제출하지 않은 경우, 추후 실습실 이용에 제한을 받습니다.</span></p>
     <p>• 문의: 경혈학교실 담당자 &nbsp;☎ <strong>063-850-6448</strong></p>
   </div>
+
+  <!-- 중요 알림: 실습실 사용 메뉴얼 -->
+  <div class="lab-manual-banner">
+    <div class="manual-icon">📋</div>
+    <div class="manual-content">
+      <div class="manual-title">실습실 사용 전 필수 확인</div>
+      <div class="manual-desc">공동실습실1 사용 메뉴얼을 반드시 읽고 숙지한 후 사용하세요.</div>
+      <button type="button" class="manual-btn" onclick="goSection('guide'); setTimeout(() => switchGuideTab('guide-manual', document.querySelector('[data-tab=guide-manual]')), 100)">📖 메뉴얼 보기</button>
+    </div>
+  </div>
+
   <form id="form-lab1" novalidate>
 
     <div class="section">
@@ -2083,13 +2247,20 @@ table.chk tr.important .imp-badge {
      사용 안내 패널
 ═══════════════════════════════════════════ -->
 <div class="form-panel guide-panel" id="panel-guide">
-  <div class="g-hero">
-    <div class="g-hero-label">원광대학교 한의과대학 · 경혈학교실 / 임상술기센터</div>
-    <h2>실습실 통합 양식 사용 안내</h2>
-    <div class="g-hero-sub">브라우저에서 열어 바로 사용 · 인터넷 연결 불필요</div>
+  <!-- 가이드 탭 -->
+  <div class="guide-tab-bar">
+    <button class="guide-tab-btn active" data-tab="guide-app" onclick="switchGuideTab('guide-app', this)">실습실 통합 양식 안내</button>
+    <button class="guide-tab-btn" data-tab="guide-manual" onclick="switchGuideTab('guide-manual', this)">공동실습실1 사용 메뉴얼</button>
   </div>
 
-  <div class="g-wrap">
+  <!-- 탭 1: 실습실 통합 양식 안내 -->
+  <div class="guide-tab-content active" id="guide-app">
+    <div class="g-wrap">
+      <div class="g-hero">
+        <div class="g-hero-label">원광대학교 한의과대학 · 경혈학교실 / 임상술기센터</div>
+        <h2>실습실 통합 양식 사용 안내</h2>
+        <div class="g-hero-sub">브라우저에서 열어 바로 사용 · 인터넷 연결 불필요</div>
+      </div>
 
     <!-- 개요 -->
     <div class="g-sec">
@@ -2252,8 +2423,194 @@ table.chk tr.important .imp-badge {
     <div class="g-footer">
       원광대학교 한의과대학 · 경혈학교실 &nbsp;|&nbsp; 실습실 통합 양식 사용 안내
     </div>
+    </div><!-- /g-wrap -->
+  </div><!-- /guide-app -->
 
-  </div><!-- /g-wrap -->
+  <!-- 탭 2: 공동실습실1 사용 메뉴얼 -->
+  <div class="guide-tab-content" id="guide-manual">
+    <div class="g-wrap">
+      <div class="g-hero">
+        <div class="g-hero-label">원광대학교 한의과대학 · 경혈학교실</div>
+        <h2>공동실습실1 사용 메뉴얼</h2>
+        <div class="g-hero-sub">방과후 공동실습실1 사용 방법 및 주의사항</div>
+      </div>
+
+      <!-- 협조 사항 -->
+      <div class="g-sec">
+        <div class="g-sec-title">협조 사항</div>
+        <div class="g-card">
+          <ul style="margin:0; padding-left:20px;">
+            <li>실습실 학생용 실습 교구 등의 손실이나 파손 주의</li>
+            <li>실습실 조명 및 난방 on/off 확인</li>
+            <li>실습실내 오염 및 감염 주의</li>
+            <li>공동실습실 사용일지 작성</li>
+            <li>실습실 이용 후 정리정돈 및 쓰레기 분리 수거</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 입출입 및 보안 / 난방 -->
+      <div class="g-sec">
+        <div class="g-sec-title">입출입 및 보안 · 난방</div>
+        <div class="g-card">
+          <div style="font-weight:600; margin-bottom:10px; color:#d33652;">출입구 왕래시 출입구 원판의 손세정제를 활용해 손소독하기</div>
+          <ol style="margin:0; padding-left:20px;">
+            <li>비밀번호 입력 후 * 누르거나 도어키를 내리면 열림</li>
+            <li>비밀번호 문의: 경혈학교실(850-6448)</li>
+            <li>냉난방 조절기 on/off 확인</li>
+            <li>전원 및 조명 스위치 on/off 확인</li>
+          </ol>
+          <div style="font-size:13px; color:#666; margin-top:12px; padding:10px; background:#f5f5f5; border-left:3px solid #3730a3;">
+            <strong>퇴실시에는:</strong> 전자열쇠 도어키(1)를 열고 닫으면, 자동 잠김. 도어키 상단부 창밖으로 빼낼 수 없으면 뒤에 잠김.
+          </div>
+          <div style="margin-top:14px; padding:12px; background:#e8f4f8; border-radius:6px; border-left:4px solid #3730a3;">
+            <div style="font-size:12px; color:#666; font-weight:500;">📷 참조: 메뉴얼 PDF 3페이지의 사진 참고</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로젝터 및 스크린 -->
+      <div class="g-sec">
+        <div class="g-sec-title">프로젝터 및 스크린</div>
+        <div class="g-card">
+          <ol style="margin:0; padding-left:20px;">
+            <li>전면 칠판 왼쪽에 전면 스크린과 후면 스크린 버튼</li>
+            <li>전면 및 후면 프로젝터 리모콘</li>
+            <li>프로젝터 HDMI1 입력 선택</li>
+          </ol>
+          <div style="margin-top:14px; padding:12px; background:#e8f4f8; border-radius:6px; border-left:4px solid #3730a3;">
+            <div style="font-size:12px; color:#666; font-weight:500;">📷 참조: 메뉴얼 PDF 5페이지의 사진 참고</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PC 사용하기 -->
+      <div class="g-sec">
+        <div class="g-sec-title">PC 사용하기</div>
+        <div class="g-card">
+          <ol style="margin:0; padding-left:20px;">
+            <li>PC 전원 on/off</li>
+            <li>"공용사용자"를 선택해 로그인: 비번 없음</li>
+          </ol>
+          <div style="margin-top:14px; padding:12px; background:#e8f4f8; border-radius:6px; border-left:4px solid #3730a3;">
+            <div style="font-size:12px; color:#666; font-weight:500;">📷 참조: 메뉴얼 PDF 6페이지의 사진 참고</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로젝터 및 TV 입력 선택 -->
+      <div class="g-sec">
+        <div class="g-sec-title">프로젝터 및 TV 입력 선택</div>
+        <div class="g-card">
+          <div style="margin-bottom:12px;">
+            <strong>전원 on/off</strong>
+          </div>
+          <div style="margin-bottom:12px;">
+            <strong>입력선택</strong>
+            <div style="margin-left:20px; margin-top:6px;">
+              <div>PC 입력인 경우 각 output 채널을 1번 선택</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <strong>출력선택</strong>
+            <div style="margin-left:20px; margin-top:6px;">
+              <div>전면 프로젝터: PJ1</div>
+              <div>후면 프로젝터: PJ2</div>
+              <div>측면 TV: TV1 &amp; TV2</div>
+            </div>
+          </div>
+          <div style="margin-top:14px; padding:12px; background:#e8f4f8; border-radius:6px; border-left:4px solid #3730a3;">
+            <div style="font-size:12px; color:#666; font-weight:500;">📷 참조: 메뉴얼 PDF 7페이지의 사진 참고</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 멀티미디어 및 마이크 사용 -->
+      <div class="g-sec">
+        <div class="g-sec-title">멀티미디어 및 마이크 사용</div>
+        <div class="g-card">
+          <ol style="margin:0; padding-left:20px;">
+            <li>무선 마이크용 전원 on</li>
+            <li>음량조절 전원 on</li>
+            <li>믹스 전원 on</li>
+            <li>메인 앰프 전원 on</li>
+            <li>무선 마이크 사용</li>
+          </ol>
+          <div style="margin-top:14px; padding:12px; background:#e8f4f8; border-radius:6px; border-left:4px solid #3730a3;">
+            <div style="font-size:12px; color:#666; font-weight:500;">📷 참조: 메뉴얼 PDF 8페이지의 사진 참고</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 전동베드 이용 -->
+      <div class="g-sec">
+        <div class="g-sec-title">전동베드(OMS-1) 이용</div>
+        <div class="g-card">
+          <div style="font-weight:600; margin-bottom:10px;">사용법</div>
+          <ul style="margin:0; padding-left:20px; margin-bottom:12px;">
+            <li>침대용 베드를 시트를 벗겨 침아서 영광증 수 있음 / 침신 침신</li>
+            <li>전원을 연결해서 연결된다</li>
+            <li>(1)전원단자 전원을 건다</li>
+            <li>높이조절 컨트롤러 이용해 높이 조절</li>
+            <li>침표시(2)도도조절 스위치 이용해 빠리</li>
+            <li>사용 후 높이침을 넘긴 왼쪽을 사용</li>
+          </ul>
+          <div style="font-weight:600; margin-bottom:10px;">주의사항</div>
+          <ul style="margin:0; padding-left:20px; margin-bottom:12px;">
+            <li>침대후 침아서 최가 나타나나 비노싱기키지다. 건데 올라가기 기대정 원하도</li>
+            <li>원래서 빼드째에 첨을 비롯 왕이 헌사함</li>
+          </ul>
+          <div style="margin-top:14px; padding:12px; background:#e8f4f8; border-radius:6px; border-left:4px solid #3730a3;">
+            <div style="font-size:12px; color:#666; font-weight:500;">📷 참조: 메뉴얼 PDF 9페이지의 사진 참고</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 초음파파영상장비 사용 -->
+      <div class="g-sec">
+        <div class="g-sec-title">초음파파영상장비 사용</div>
+        <div class="g-card">
+          <ul style="margin:0; padding-left:20px;">
+            <li>면허가 있는 한의사 지도감독 하에만 신청 및 사용 가능합</li>
+            <li>사용 신청 시 사용일지(구글폼)에 지도한의사 성명과 소속을 기재해야 함</li>
+            <li>지도한의사 등석 없이 학생만 단독으로 사용할 수 없음</li>
+            <li>'정규 수업에서만 사용 가능'하다고 명시된 장비는 임의 사용할 수 없음</li>
+            <li>장비 파손·오작동 등 문제 발생 시 즉시 경혈학교실(850-6448)로 연락</li>
+            <li>사용 후 원래 상태로 정리해야 함</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 쓰레기 분리 수거 -->
+      <div class="g-sec">
+        <div class="g-sec-title">쓰레기 분리 수거</div>
+        <div class="g-card">
+          <ul style="margin:0; padding-left:20px;">
+            <li><strong>파란색 통:</strong> 일반 쓰레기</li>
+            <li><strong>녹색:</strong> 일반 의료페기물수거함</li>
+            <li><strong>플라스틱 원형통:</strong> 위해 의료페기물 수거함(칠, 단샛, 약침주사기 등)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 위반 시 조치사항 -->
+      <div class="g-sec">
+        <div class="g-sec-title">위반 시 조치사항</div>
+        <div class="g-card">
+          <ul style="margin:0; padding-left:20px;">
+            <li>본 매뉴얼에 명시된 사용수칙을 위반한 경우 경고 조치 함</li>
+            <li>위반이 반복되거나 정도가 중대한 경우 공동실습실 이용이 제한될 수 있음</li>
+            <li>고의 또는 과실로 인한 교구·장비 파손 및 분실은 원인 제공자에게 배상 책임이 있을 수 있음</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="g-footer">
+        원광대학교 한의과대학 · 경혈학교실 &nbsp;|&nbsp; 공동실습실1 사용 메뉴얼
+      </div>
+    </div><!-- /g-wrap -->
+  </div><!-- /guide-manual -->
+
 </div><!-- /panel-guide -->
 
 <!-- ═══════════════════════════════════════════
@@ -2267,7 +2624,15 @@ table.chk tr.important .imp-badge {
       <div class="cal-sub">방과후 공동실습실1 &amp; 임상술기센터 예약 현황</div>
     </div>
   </div>
-  <div class="cal-wrap">
+
+  <!-- 캘린더 탭 -->
+  <div class="cal-tab-bar">
+    <button class="cal-tab-btn active" data-tab="cal-lab1" onclick="switchCalendarTab('cal-lab1', this)">공동실습실1 사용일정</button>
+    <button class="cal-tab-btn" data-tab="cal-clinical" onclick="switchCalendarTab('cal-clinical', this)">임상술기센터 사용일정</button>
+  </div>
+
+  <!-- 공동실습실1 캘린더 -->
+  <div class="cal-wrap cal-tab-content active" id="cal-lab1">
     <iframe
       src="https://calendar.google.com/calendar/embed?src=8cc29589366c237f04203da6aa5b2d378f295d8cd86771620d9d6fcf7f8a81bb%40group.calendar.google.com&ctz=Asia%2FSeoul"
       style="border:0;"
@@ -2275,7 +2640,20 @@ table.chk tr.important .imp-badge {
       height="600"
       frameborder="0"
       scrolling="no"
-      title="실습실 사용일정표">
+      title="공동실습실1 사용일정">
+    </iframe>
+  </div>
+
+  <!-- 임상술기센터 캘린더 -->
+  <div class="cal-wrap cal-tab-content" id="cal-clinical">
+    <iframe
+      src="https://calendar.google.com/calendar/embed?src=008db4cb5190ee495d409377947ad58acc054fd860b5c7efd99a05bcb9b6dbb1%40group.calendar.google.com&ctz=Asia%2FSeoul"
+      style="border:0;"
+      width="100%"
+      height="600"
+      frameborder="0"
+      scrolling="no"
+      title="임상술기센터 사용일정">
     </iframe>
   </div>
 </div><!-- /panel-calendar -->
@@ -2365,6 +2743,24 @@ table.chk tr.important .imp-badge {
       switchTab(SECTION_FIRST[section]);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function switchCalendarTab(tabId, btn) {
+    // 콘텐츠 전환
+    document.querySelectorAll('.cal-tab-content').forEach(el => el.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    // 버튼 활성화
+    document.querySelectorAll('.cal-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function switchGuideTab(tabId, btn) {
+    // 콘텐츠 전환
+    document.querySelectorAll('.guide-tab-content').forEach(el => el.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    // 버튼 활성화
+    document.querySelectorAll('.guide-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   }
 
   function switchTab(tab) {
