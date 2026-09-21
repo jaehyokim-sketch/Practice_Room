@@ -396,7 +396,7 @@ table.chk th {
   letter-spacing: 0.06em;
   text-align: left;
 }
-table.chk th.c { text-align: center; width: 56px; }
+table.chk th.c { text-align: center; width: 52px; }
 table.chk td {
   padding: 8px 14px;
   border-bottom: 1px solid var(--border);
@@ -409,7 +409,8 @@ table.chk tbody tr:nth-child(even) td {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
-table.chk input[type="checkbox"] {
+table.chk input[type="checkbox"],
+table.chk input[type="radio"] {
   width: 15px; height: 15px;
   accent-color: var(--accent);
   cursor: pointer;
@@ -672,6 +673,20 @@ table.chk tr.important .imp-badge {
   transform: translateX(-50%) translateY(0);
 }
 .toast.error { background: #9B2020; }
+
+/* ─── Required field highlight ─── */
+.field-invalid {
+  outline: 2px solid var(--required) !important;
+  outline-offset: 1px;
+  border-color: var(--required) !important;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--required) 6%, transparent) !important;
+}
+.room-option.field-invalid,
+.equip-item.field-invalid {
+  outline: 2px solid var(--required) !important;
+  outline-offset: 2px;
+}
 
 /* ─── Equipment group selector ─── */
 .equip-groups {
@@ -1294,6 +1309,10 @@ table.chk tr.important .imp-badge {
       <div class="sec-title">① 신청자 정보</div>
       <div class="field-grid">
         <div class="field">
+          <label for="a-applydate">신청일자<span class="req">*</span></label>
+          <input type="date" id="a-applydate" name="apply-date" required>
+        </div>
+        <div class="field">
           <label for="a-club">사용신청 단체명<span class="req">*</span></label>
           <input type="text" id="a-club" name="club" required>
         </div>
@@ -1418,7 +1437,11 @@ table.chk tr.important .imp-badge {
 
     <div class="section">
       <div class="sec-title">① 신청자 정보</div>
-      <div class="field-grid one" style="margin-bottom:14px;">
+      <div class="field-grid">
+        <div class="field">
+          <label for="b-applydate">신청일자<span class="req">*</span></label>
+          <input type="date" id="b-applydate" name="apply-date" required>
+        </div>
         <div class="field">
           <label for="b-club">사용신청 단체명<span class="req">*</span></label>
           <input type="text" id="b-club" name="club" required>
@@ -1595,27 +1618,27 @@ table.chk tr.important .imp-badge {
 
     <!-- ③ 숙지사항 확인 -->
     <div class="section">
-      <div class="sec-title">③ 숙지사항 확인 <span class="sec-note">아래 항목을 읽고 확인한 경우 체크하세요</span></div>
+      <div class="sec-title">③ 숙지사항 확인 <span class="sec-note">각 항목에 대해 예 / 아니오를 선택하세요</span></div>
       <div class="tbl-wrap">
         <table class="chk">
-          <thead><tr><th>확인 항목</th><th class="c">예</th></tr></thead>
+          <thead><tr><th>확인 항목</th><th class="c">예</th><th class="c">아니오</th></tr></thead>
           <tbody>
-            <tr><td><span class="n">1</span>입실 후 손씻기 하였다. 상시로 손소독제로 손소독 하였다.</td><td class="c"><input type="checkbox" name="c1"></td></tr>
-            <tr><td><span class="n">2</span>실습실 내에서 청결한 복장(실습복)을 착용하고 위생관리를 철저히 준수한다.</td><td class="c"><input type="checkbox" name="c2"></td></tr>
-            <tr><td><span class="n">3</span>정규 실습 교육(경혈학실습, 경혈학임상술기실습, 침구경혈학임상술기실습) 전용 실습기기 및 용품의 허락 외 임의 사용 금지를 숙지하고, 준수하였다.</td><td class="c"><input type="checkbox" name="c3"></td></tr>
-            <tr><td><span class="n">4</span>실습실 베드 작동법과 주의사항을 숙지하였다.</td><td class="c"><input type="checkbox" name="c4"></td></tr>
-            <tr><td><span class="n">5</span>사용가능한 위생용품을 숙지하였다.</td><td class="c"><input type="checkbox" name="c5"></td></tr>
-            <tr><td><span class="n">6</span>알코올 솜통, 핀셋, 가위 등 의료용품은 사용 후 건조기 옆 수거함에 두었다.</td><td class="c"><input type="checkbox" name="c6"></td></tr>
-            <tr><td><span class="n">7</span>일반쓰레기, 의료용폐기물, 위해폐기물을 분리수거한다.</td><td class="c"><input type="checkbox" name="c7"></td></tr>
-            <tr><td><span class="n">8</span>사용 후 실습실을 정리정돈 한다.</td><td class="c"><input type="checkbox" name="c8"></td></tr>
-            <tr><td><span class="n">9</span>음향시설, PC, TV, 프로젝터 사용 후 전원 Off 확인</td><td class="c"><input type="checkbox" name="c9"></td></tr>
-            <tr><td><span class="n">10</span>실습 베드의 전원 Off 확인하였다.</td><td class="c"><input type="checkbox" name="c10"></td></tr>
-            <tr><td><span class="n">11</span>사용 전후에 냉/난방기기의 전원 On/Off 확인</td><td class="c"><input type="checkbox" name="c11"></td></tr>
-            <tr><td><span class="n">12</span>사용 전후에 실습실 조명시설 전원 On/Off 확인</td><td class="c"><input type="checkbox" name="c12"></td></tr>
-            <tr><td><span class="n">13</span>사용 전후 창문/출입구 잠금 여부 확인</td><td class="c"><input type="checkbox" name="c13"></td></tr>
+            <tr><td><span class="n">1</span>입실 후 손씻기 하였다. 상시로 손소독제로 손소독 하였다.</td><td class="c"><input type="radio" name="c1" value="yes" required></td><td class="c"><input type="radio" name="c1" value="no"></td></tr>
+            <tr><td><span class="n">2</span>실습실 내에서 청결한 복장(실습복)을 착용하고 위생관리를 철저히 준수한다.</td><td class="c"><input type="radio" name="c2" value="yes" required></td><td class="c"><input type="radio" name="c2" value="no"></td></tr>
+            <tr><td><span class="n">3</span>정규 실습 교육(경혈학실습, 경혈학임상술기실습, 침구경혈학임상술기실습) 전용 실습기기 및 용품의 허락 외 임의 사용 금지를 숙지하고, 준수하였다.</td><td class="c"><input type="radio" name="c3" value="yes" required></td><td class="c"><input type="radio" name="c3" value="no"></td></tr>
+            <tr><td><span class="n">4</span>실습실 베드 작동법과 주의사항을 숙지하였다.</td><td class="c"><input type="radio" name="c4" value="yes" required></td><td class="c"><input type="radio" name="c4" value="no"></td></tr>
+            <tr><td><span class="n">5</span>사용가능한 위생용품을 숙지하였다.</td><td class="c"><input type="radio" name="c5" value="yes" required></td><td class="c"><input type="radio" name="c5" value="no"></td></tr>
+            <tr><td><span class="n">6</span>알코올 솜통, 핀셋, 가위 등 의료용품은 사용 후 건조기 옆 수거함에 두었다.</td><td class="c"><input type="radio" name="c6" value="yes" required></td><td class="c"><input type="radio" name="c6" value="no"></td></tr>
+            <tr><td><span class="n">7</span>일반쓰레기, 의료용폐기물, 위해폐기물을 분리수거한다.</td><td class="c"><input type="radio" name="c7" value="yes" required></td><td class="c"><input type="radio" name="c7" value="no"></td></tr>
+            <tr><td><span class="n">8</span>사용 후 실습실을 정리정돈 한다.</td><td class="c"><input type="radio" name="c8" value="yes" required></td><td class="c"><input type="radio" name="c8" value="no"></td></tr>
+            <tr><td><span class="n">9</span>음향시설, PC, TV, 프로젝터 사용 후 전원 Off 확인</td><td class="c"><input type="radio" name="c9" value="yes" required></td><td class="c"><input type="radio" name="c9" value="no"></td></tr>
+            <tr><td><span class="n">10</span>실습 베드의 전원 Off 확인하였다.</td><td class="c"><input type="radio" name="c10" value="yes" required></td><td class="c"><input type="radio" name="c10" value="no"></td></tr>
+            <tr><td><span class="n">11</span>사용 전후에 냉/난방기기의 전원 On/Off 확인</td><td class="c"><input type="radio" name="c11" value="yes" required></td><td class="c"><input type="radio" name="c11" value="no"></td></tr>
+            <tr><td><span class="n">12</span>사용 전후에 실습실 조명시설 전원 On/Off 확인</td><td class="c"><input type="radio" name="c12" value="yes" required></td><td class="c"><input type="radio" name="c12" value="no"></td></tr>
+            <tr><td><span class="n">13</span>사용 전후 창문/출입구 잠금 여부 확인</td><td class="c"><input type="radio" name="c13" value="yes" required></td><td class="c"><input type="radio" name="c13" value="no"></td></tr>
             <tr class="important">
               <td><span class="imp-badge">중요</span>초음파영상진단장비 사용 전 장비 사용신청서 작성하였다.</td>
-              <td class="c"><input type="checkbox" name="c-ultrasound"></td>
+              <td class="c"><input type="radio" name="c-ultrasound" value="yes" required></td><td class="c"><input type="radio" name="c-ultrasound" value="no"></td>
             </tr>
           </tbody>
         </table>
@@ -1639,16 +1662,8 @@ table.chk tr.important .imp-badge {
       <div class="sec-title">⑤ 사용 내용</div>
       <div class="field-grid one" style="gap:14px;">
         <div class="field">
-          <label for="r-purpose">공동실습실1 사용 목적<span class="req">*</span></label>
-          <textarea id="r-purpose" name="purpose" rows="3" placeholder="실습실 사용 목적을 구체적으로 기재하세요." required></textarea>
-        </div>
-        <div class="field">
           <label for="r-equip">실습실내 장비, 기기, 비품, 도구 사용 목록<span class="req">*</span></label>
           <textarea id="r-equip" name="equipment" rows="4" placeholder="PC, 프로젝터, 마이크, 초음파영상진단장비, 실습용품, 위생용품, 청소용품, 해부학교구, 베드 등 실제 이용하거나 활용한 물품 리스트를 기재할 것." required></textarea>
-        </div>
-        <div class="field">
-          <label for="r-users">실습실 사용자 명단<span class="req">*</span></label>
-          <textarea id="r-users" name="users" rows="5" placeholder="실습실 사용자 명단을 모두 작성하여 주세요." required></textarea>
         </div>
       </div>
     </div>
@@ -1693,8 +1708,12 @@ table.chk tr.important .imp-badge {
       <div class="sec-title">① 신청자 정보</div>
       <div class="field-grid">
         <div class="field">
-          <label for="ua-who">소속 및 성명<span class="req">*</span></label>
-          <input type="text" id="ua-who" name="who" placeholder="예: 원광대학교 한의과대학/홍길동" required>
+          <label for="ua-dept">소속<span class="req">*</span></label>
+          <input type="text" id="ua-dept" name="dept" placeholder="예: 원광대학교 한의과대학 3학년" required>
+        </div>
+        <div class="field">
+          <label for="ua-name">신청인 이름<span class="req">*</span></label>
+          <input type="text" id="ua-name" name="name" placeholder="성명" required>
         </div>
         <div class="field">
           <label for="ua-email">이메일<span class="req">*</span></label>
@@ -1827,7 +1846,7 @@ table.chk tr.important .imp-badge {
   <form id="form-us-report" novalidate>
 
     <div class="section">
-      <div class="sec-title">① 신청자 정보</div>
+      <div class="sec-title">① 사용자 정보</div>
       <div class="field-grid">
         <div class="field">
           <label for="ur-who">소속 및 성명<span class="req">*</span></label>
@@ -1840,6 +1859,10 @@ table.chk tr.important .imp-badge {
         <div class="field">
           <label for="ur-tel">휴대전화 연락처<span class="req">*</span></label>
           <input type="tel" id="ur-tel" name="tel" placeholder="010-0000-0000" required>
+        </div>
+        <div class="field">
+          <label for="ur-supervisor">(필수) 지도교수 또는 지도한의사<span class="req">*</span></label>
+          <input type="text" id="ur-supervisor" name="supervisor" placeholder="지도교수 또는 지도한의사 성명" required>
         </div>
       </div>
     </div>
@@ -2204,7 +2227,7 @@ table.chk tr.important .imp-badge {
   const today = new Date();
   const iso = today.toISOString().slice(0, 10);
   const yr  = today.getFullYear();
-  ['a-date','b-date','r-date','ua-sdate','ua-edate','ur-sdate','ur-edate','ur-retdate'].forEach(id => {
+  ['a-applydate','a-date','b-applydate','b-date','r-date','ua-sdate','ua-edate','ur-sdate','ur-edate','ur-retdate'].forEach(id => {
     const el = document.getElementById(id); if(el) el.value = iso;
   });
   ['a-syear','b-syear'].forEach(id => { const el = document.getElementById(id); if(el) el.value = yr; });
@@ -2354,9 +2377,56 @@ table.chk tr.important .imp-badge {
     });
   }
 
+  // ─── Required field validation ───
+  function checkRequired(form) {
+    // Clear previous highlights
+    form.querySelectorAll('.field-invalid').forEach(el => el.classList.remove('field-invalid'));
+
+    let missing = 0;
+
+    // text / date / time / tel / number / email / textarea / select
+    form.querySelectorAll('[required]').forEach(el => {
+      if (el.type === 'radio') return; // handled separately
+      if (el.type === 'checkbox') {
+        if (!el.checked) { el.closest('label') ? el.closest('label').classList.add('field-invalid') : el.classList.add('field-invalid'); missing++; }
+      } else {
+        if (!el.value.trim()) { el.classList.add('field-invalid'); missing++; }
+      }
+    });
+
+    // radio groups with [required]
+    const radioNames = new Set([...form.querySelectorAll('input[type="radio"][required]')].map(r => r.name));
+    radioNames.forEach(name => {
+      if (!form.querySelector('input[name="' + name + '"]:checked')) {
+        form.querySelectorAll('input[name="' + name + '"]').forEach(r => {
+          (r.closest('.radio-item') || r).classList.add('field-invalid');
+        });
+        missing++;
+      }
+    });
+
+    // clinical tab: room checkbox group (not [required] attr but must have ≥1 checked)
+    if (currentTab === 'clinical') {
+      if (!form.querySelector('input[name="room"]:checked')) {
+        form.querySelectorAll('.room-option').forEach(el => el.classList.add('field-invalid'));
+        missing++;
+      }
+    }
+
+    return missing;
+  }
+
   // ─── Save ───
   function saveForm() {
     const form = document.getElementById(FORM_IDS[currentTab]);
+    const missing = checkRequired(form);
+    if (missing > 0) {
+      showToast('필수 항목 ' + missing + '개를 입력하세요.', true);
+      // Scroll to first invalid field
+      const first = form.querySelector('.field-invalid');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     try {
       const payload = JSON.stringify({ data: serializeForm(form), savedAt: new Date().toISOString() });
       localStorage.setItem(STORE_PREFIX + currentTab, payload);
@@ -2386,17 +2456,20 @@ table.chk tr.important .imp-badge {
 
   // ─── Save & Print ───
   function saveThenPrint() {
-    saveForm();
     const form = document.getElementById(FORM_IDS[currentTab]);
-    let missing = 0;
-    form.querySelectorAll('[required]').forEach(el => {
-      if ((el.type === 'checkbox') && !el.checked) missing++;
-      else if (el.type !== 'checkbox' && el.type !== 'radio' && !el.value.trim()) missing++;
-    });
-    const radioNames = new Set([...form.querySelectorAll('input[type="radio"][required]')].map(r => r.name));
-    radioNames.forEach(name => { if (!form.querySelector('input[name="' + name + '"]:checked')) missing++; });
-    if (currentTab === 'clinical' && !form.querySelector('input[name="room"]:checked')) missing++;
-    if (missing > 0 && !confirm('필수 항목(' + missing + '개)이 입력되지 않았습니다.\n그래도 인쇄하시겠습니까?')) return;
+    const missing = checkRequired(form);
+    if (missing > 0) {
+      showToast('필수 항목 ' + missing + '개를 입력하세요.', true);
+      const first = form.querySelector('.field-invalid');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    // Save first, then print
+    try {
+      const payload = JSON.stringify({ data: serializeForm(form), savedAt: new Date().toISOString() });
+      localStorage.setItem(STORE_PREFIX + currentTab, payload);
+      updateSaveInfo();
+    } catch(e) {}
     window.print();
   }
 
@@ -2409,8 +2482,8 @@ table.chk tr.important .imp-badge {
     try { localStorage.removeItem(STORE_PREFIX + currentTab); } catch(e) {}
     const d = new Date().toISOString().slice(0, 10);
     const y = new Date().getFullYear();
-    if (currentTab === 'lab1')      { document.getElementById('a-date').value = d; document.getElementById('a-syear').value = y; }
-    if (currentTab === 'clinical')  { document.getElementById('b-date').value = d; document.getElementById('b-syear').value = y; }
+    if (currentTab === 'lab1')      { document.getElementById('a-applydate').value = d; document.getElementById('a-date').value = d; document.getElementById('a-syear').value = y; }
+    if (currentTab === 'clinical')  { document.getElementById('b-applydate').value = d; document.getElementById('b-date').value = d; document.getElementById('b-syear').value = y; }
     if (currentTab === 'report')    { document.getElementById('r-date').value = d; }
     if (currentTab === 'us-apply')  { document.getElementById('ua-sdate').value = d; document.getElementById('ua-edate').value = d; }
     if (currentTab === 'us-report') { document.getElementById('ur-sdate').value = d; document.getElementById('ur-edate').value = d; document.getElementById('ur-retdate').value = d; }
@@ -2421,6 +2494,24 @@ table.chk tr.important .imp-badge {
   // ─── Init ───
   document.querySelector('.action-bar').style.display = 'none';
   updateSaveInfo();
+
+  // Auto-clear invalid highlight on input
+  document.querySelectorAll('.form-panel').forEach(panel => {
+    panel.addEventListener('input', function(e) {
+      const el = e.target;
+      el.classList.remove('field-invalid');
+      if (el.closest('.room-option')) el.closest('.room-option').classList.remove('field-invalid');
+      if (el.closest('.radio-item'))  el.closest('.radio-item').classList.remove('field-invalid');
+      if (el.closest('label'))        el.closest('label').classList.remove('field-invalid');
+    });
+    panel.addEventListener('change', function(e) {
+      const el = e.target;
+      el.classList.remove('field-invalid');
+      if (el.closest('.room-option')) el.closest('.room-option').classList.remove('field-invalid');
+      if (el.closest('.radio-item'))  el.closest('.radio-item').classList.remove('field-invalid');
+      if (el.closest('label'))        el.closest('label').classList.remove('field-invalid');
+    });
+  });
 </script>
 </body>
 </html>
