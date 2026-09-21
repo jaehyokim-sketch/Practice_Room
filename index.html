@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>실습실 통합 양식</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap">
 <style>
@@ -753,6 +758,7 @@ table.chk tr.important .imp-badge {
   .action-bar, .form-note { display: none !important; }
   .form-panel { display: none !important; }
   .form-panel.active { display: block !important; }
+  .guide-panel.active { display: none !important; }
   input, textarea, select {
     border-color: #aaa !important;
     background: #fff !important;
@@ -772,7 +778,212 @@ table.chk tr.important .imp-badge {
   .warning-box .w-badge { background: #D9534F !important; color: #fff !important; }
   @page { size: A4; margin: 14mm 14mm; }
 }
+
+/* ══════════════════════════════
+   사용 안내 패널 (Guide Panel)
+══════════════════════════════ */
+.guide-panel {
+  padding: 0;
+}
+.guide-panel .g-hero {
+  background: linear-gradient(135deg, #1A3A6B 0%, #2563b0 100%);
+  color: #fff;
+  padding: 36px 32px 28px;
+  margin: -40px -52px 32px;
+  text-align: center;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+@media (max-width: 600px) {
+  .guide-panel .g-hero { margin: -28px -20px 24px; padding: 28px 20px 22px; }
+}
+.guide-panel .g-hero-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 8px;
+}
+.guide-panel .g-hero h2 {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.guide-panel .g-hero-sub {
+  font-size: 12px;
+  opacity: 0.8;
+}
+.guide-panel .g-wrap { max-width: 680px; margin: 0 auto; }
+.guide-panel .g-sec { margin-bottom: 30px; }
+.guide-panel .g-sec-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2563b0;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 7px;
+  margin-bottom: 14px;
+}
+.guide-panel .g-card {
+  background: var(--doc-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.guide-panel .g-tab-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.guide-panel .g-tab-table th {
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.guide-panel .g-tab-table th:first-child { border-radius: 6px 0 0 0; }
+.guide-panel .g-tab-table th:last-child  { border-radius: 0 6px 0 0; }
+.guide-panel .g-tab-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  font-size: 13px;
+}
+.guide-panel .g-tab-table tr:last-child td { border-bottom: none; }
+.guide-panel .g-tab-table tr:nth-child(even) td { background: var(--section-bg); }
+.guide-panel .g-badge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.guide-panel .g-badge-before { background: #dbeafe; color: #1e40af; }
+.guide-panel .g-badge-after  { background: #fee2e2; color: #991b1b; }
+.guide-panel .g-steps { counter-reset: gstep; list-style: none; padding: 0; margin: 0; }
+.guide-panel .g-steps li {
+  counter-increment: gstep;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.guide-panel .g-steps li::before {
+  content: counter(gstep);
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.guide-panel .g-steps li p { font-size: 13.5px; margin: 0; }
+.guide-panel .g-steps li strong { color: #2563b0; }
+.guide-panel .g-btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 0; }
+.guide-panel .g-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  pointer-events: none;
+}
+.guide-panel .gbp-save  { background: #e8f5ee; border-color: #1a7a4a; color: #1a7a4a; }
+.guide-panel .gbp-load  { background: #e8eef8; border-color: #2563b0; color: #2563b0; }
+.guide-panel .gbp-print { background: var(--accent); border-color: var(--accent); color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.guide-panel .gbp-reset { background: var(--bg); border-color: var(--border); color: var(--secondary); }
+.guide-panel .g-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+@media (max-width: 500px) { .guide-panel .g-feat-grid { grid-template-columns: 1fr; } }
+.guide-panel .g-feat {
+  background: var(--doc-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.guide-panel .g-feat-icon { font-size: 20px; margin-bottom: 5px; }
+.guide-panel .g-feat-name { font-size: 12.5px; font-weight: 800; margin-bottom: 3px; color: #2563b0; }
+.guide-panel .g-feat-desc { font-size: 12px; color: var(--secondary); line-height: 1.5; }
+.guide-panel .g-warn-box {
+  background: var(--important-bg);
+  border: 1.5px solid var(--important-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--important-text);
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.guide-panel .g-notice-box {
+  background: #e8f5ee;
+  border: 1px solid #a3d9b8;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #1a7a4a;
+  margin-bottom: 10px;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+.guide-panel .g-tag {
+  display: inline-block;
+  background: var(--section-bg);
+  color: var(--accent);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.guide-panel .g-equip-note {
+  font-size: 12px;
+  color: var(--required);
+  margin-top: 3px;
+}
+.guide-panel .g-contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+@media (max-width: 560px) { .guide-panel .g-contact-grid { grid-template-columns: 1fr; } }
+.guide-panel .g-contact-card {
+  background: var(--doc-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.guide-panel .g-contact-role { font-size: 11px; color: var(--secondary); margin-bottom: 4px; }
+.guide-panel .g-contact-name { font-size: 13.5px; font-weight: 800; }
+.guide-panel .g-contact-tel  { font-size: 13px; color: #2563b0; margin-top: 4px; font-weight: 700; }
+.guide-panel .g-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--secondary);
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
 </style>
+</head>
+<body>
 
 <!-- ─── Site header + tab bar ─── -->
 <div class="site-header">
@@ -799,6 +1010,10 @@ table.chk tr.important .imp-badge {
     <button class="tab-btn" id="tab-us-report" onclick="switchTab('us-report')" role="tab" aria-selected="false">
       초음파영상장비 사용 결과보고서
       <span class="t-sub">사용 후 제출 필수</span>
+    </button>
+    <button class="tab-btn" id="tab-guide" onclick="switchTab('guide')" role="tab" aria-selected="false">
+      사용 안내
+      <span class="t-sub">이용 방법 · 주의사항</span>
     </button>
   </div>
 </div>
@@ -1531,6 +1746,183 @@ table.chk tr.important .imp-badge {
 </div><!-- /panel-us-report -->
 
 
+<!-- ═══════════════════════════════════════════
+     사용 안내 패널
+═══════════════════════════════════════════ -->
+<div class="form-panel guide-panel" id="panel-guide">
+  <div class="g-hero">
+    <div class="g-hero-label">원광대학교 한의과대학 · 경혈학교실 / 임상술기센터</div>
+    <h2>실습실 통합 양식 사용 안내</h2>
+    <div class="g-hero-sub">브라우저에서 열어 바로 사용 · 인터넷 연결 불필요</div>
+  </div>
+
+  <div class="g-wrap">
+
+    <!-- 개요 -->
+    <div class="g-sec">
+      <div class="g-sec-title">개요</div>
+      <div class="g-card">
+        5개 신청서·결과보고서를 하나의 HTML 파일로 통합한 양식입니다. 인터넷 연결 없이 브라우저(Chrome · Edge · Safari)에서 바로 열어 작성, 임시저장, 인쇄 및 PDF 저장이 가능합니다.
+      </div>
+    </div>
+
+    <!-- 탭 구성 -->
+    <div class="g-sec">
+      <div class="g-sec-title">탭 구성</div>
+      <div class="g-card" style="padding:0; overflow:hidden;">
+        <table class="g-tab-table">
+          <thead>
+            <tr>
+              <th style="width:36px;">탭</th>
+              <th>양식명</th>
+              <th style="width:120px;">제출 시점</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>①</td>
+              <td>공동실습실1 사용 신청서</td>
+              <td><span class="g-badge g-badge-before">사용 전</span></td>
+            </tr>
+            <tr>
+              <td>②</td>
+              <td>임상술기센터 사용 신청서</td>
+              <td><span class="g-badge g-badge-before">사용 전</span></td>
+            </tr>
+            <tr>
+              <td>③</td>
+              <td>공동실습 사용 결과 보고서</td>
+              <td><span class="g-badge g-badge-after">사용 후 필수</span></td>
+            </tr>
+            <tr>
+              <td>④</td>
+              <td>초음파영상장비 사용신청서</td>
+              <td><span class="g-badge g-badge-before">사용 전</span></td>
+            </tr>
+            <tr>
+              <td>⑤</td>
+              <td>초음파영상장비 사용 결과보고서</td>
+              <td><span class="g-badge g-badge-after">사용 후 필수</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 기본 사용법 -->
+    <div class="g-sec">
+      <div class="g-sec-title">기본 사용법</div>
+      <ul class="g-steps">
+        <li><p><strong>파일 열기</strong> — <code>실습실_통합양식.html</code>을 더블클릭하거나 브라우저로 드래그하여 엽니다.</p></li>
+        <li><p><strong>탭 선택</strong> — 상단 탭 버튼을 클릭하여 해당 신청서로 이동합니다.</p></li>
+        <li><p><strong>양식 작성</strong> — 각 항목을 빠짐없이 입력합니다. <span class="g-tag">*</span> 표시 항목은 필수 입력란입니다.</p></li>
+        <li><p><strong>임시저장</strong> — 작성 중 💾 임시저장 버튼으로 내용을 저장해두면, 다음에 같은 파일을 열었을 때 📂 불러오기로 복원할 수 있습니다.</p></li>
+        <li><p><strong>저장 및 인쇄</strong> — 🖨 저장 및 인쇄 버튼을 클릭하면 임시저장 후 인쇄 창이 열립니다. 프린터 대신 <strong>PDF로 저장</strong>을 선택하면 PDF 파일로 저장됩니다.</p></li>
+      </ul>
+    </div>
+
+    <!-- 하단 버튼 안내 -->
+    <div class="g-sec">
+      <div class="g-sec-title">하단 버튼 안내</div>
+      <div class="g-btn-row">
+        <span class="g-btn-pill gbp-save">💾 임시저장</span>
+        <span class="g-btn-pill gbp-load">📂 불러오기</span>
+        <span class="g-btn-pill gbp-print">🖨 저장 및 인쇄</span>
+        <span class="g-btn-pill gbp-reset">↺ 양식 초기화</span>
+      </div>
+      <div class="g-feat-grid">
+        <div class="g-feat">
+          <div class="g-feat-icon">💾</div>
+          <div class="g-feat-name">임시저장</div>
+          <div class="g-feat-desc">현재 탭의 입력 내용을 브라우저에 저장합니다. 탭별로 독립 저장되며, 저장 시각이 표시됩니다.</div>
+        </div>
+        <div class="g-feat">
+          <div class="g-feat-icon">📂</div>
+          <div class="g-feat-name">불러오기</div>
+          <div class="g-feat-desc">마지막으로 임시저장한 내용을 복원합니다. 저장본이 없으면 안내 메시지가 표시됩니다.</div>
+        </div>
+        <div class="g-feat">
+          <div class="g-feat-icon">🖨</div>
+          <div class="g-feat-name">저장 및 인쇄</div>
+          <div class="g-feat-desc">임시저장 후 인쇄 창을 실행합니다. PDF 저장도 이 버튼으로 진행합니다.</div>
+        </div>
+        <div class="g-feat">
+          <div class="g-feat-icon">↺</div>
+          <div class="g-feat-name">양식 초기화</div>
+          <div class="g-feat-desc">현재 탭의 모든 입력 내용과 임시저장 데이터를 삭제합니다.</div>
+        </div>
+      </div>
+      <div class="g-notice-box">
+        💡 <strong>임시저장 주의사항</strong> — 저장 데이터는 <strong>같은 브라우저·같은 파일</strong>에서만 유지됩니다. 브라우저 캐시 삭제, 시크릿 모드, 다른 기기에서는 불러올 수 없습니다.
+      </div>
+    </div>
+
+    <!-- 초음파 장비 안내 -->
+    <div class="g-sec">
+      <div class="g-sec-title">초음파 장비 사용 안내</div>
+      <div class="g-card">
+        <p style="margin-bottom:10px; font-size:13.5px;">초음파영상장비 사용 시 아래 절차를 반드시 준수하세요.</p>
+        <ul class="g-steps">
+          <li><p><strong>사용신청서(탭 ④) 작성 및 제출</strong> — 사용 전 반드시 제출하고 담당 조교의 승인을 받아야 합니다.</p></li>
+          <li><p><strong>장비 사용</strong> — 승인된 장비만 사용하며, 사용 중 이상 발생 시 즉시 담당자에게 보고합니다.</p></li>
+          <li><p><strong>결과보고서(탭 ⑤) 작성 및 제출</strong> — 사용 종료 후 반드시 제출합니다.</p></li>
+        </ul>
+        <div style="margin-top:12px; padding:12px 14px; background:var(--section-bg); border-radius:6px; border:1px solid var(--border);">
+          <span class="g-tag">특별 조건</span>
+          <p style="margin-top:6px; font-weight:700; font-size:13.5px;">삼성메디슨 / HS50</p>
+          <p class="g-equip-note">방과후 개별 사용 금지 · 진단학교실 사용 허가 조건</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 미제출 시 불이익 -->
+    <div class="g-sec">
+      <div class="g-sec-title">결과보고서 미제출 시 불이익</div>
+      <div class="g-warn-box">
+        <strong>⚠ 공동실습실1</strong><br>
+        공동실습실1 사용 결과 보고서를 제출하지 않은 경우, 추후 실습실 이용에 제한을 받습니다.
+      </div>
+      <div class="g-warn-box">
+        <strong>⚠ 초음파영상장비</strong><br>
+        사용 결과 보고서 미제출 시 추후 장비 사용에 제한이 있을 수 있습니다.
+      </div>
+    </div>
+
+    <!-- 제출 방법 -->
+    <div class="g-sec">
+      <div class="g-sec-title">제출 방법</div>
+      <div class="g-card">
+        인쇄 후 직접 제출하거나, PDF로 저장하여 경혈학교실 조교 및 담당자에게 이메일로 제출하세요.
+      </div>
+    </div>
+
+    <!-- 문의 -->
+    <div class="g-sec">
+      <div class="g-sec-title">문의</div>
+      <div class="g-contact-grid">
+        <div class="g-contact-card">
+          <div class="g-contact-role">경혈학교실 조교</div>
+          <div class="g-contact-name">담당 조교</div>
+          <div class="g-contact-tel">☎ 063-850-6448</div>
+        </div>
+        <div class="g-contact-card">
+          <div class="g-contact-role">경혈학교실 관리자</div>
+          <div class="g-contact-name">김재효 교수</div>
+        </div>
+        <div class="g-contact-card">
+          <div class="g-contact-role">임상술기센터 관리자</div>
+          <div class="g-contact-name">임정태 교수</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g-footer">
+      원광대학교 한의과대학 · 경혈학교실 &nbsp;|&nbsp; 실습실 통합 양식 사용 안내
+    </div>
+
+  </div><!-- /g-wrap -->
+</div><!-- /panel-guide -->
+
 <!-- ─── Action bar ─── -->
 <div class="action-bar">
   <div class="action-row">
@@ -1566,14 +1958,18 @@ table.chk tr.important .imp-badge {
 
   // ─── Tab switch ───
   let currentTab = 'lab1';
+  const ALL_TABS = ['lab1','clinical','report','us-apply','us-report','guide'];
   function switchTab(tab) {
     currentTab = tab;
-    ['lab1','clinical','report','us-apply','us-report'].forEach(t => {
+    ALL_TABS.forEach(t => {
       document.getElementById('panel-' + t).classList.toggle('active', t === tab);
       const btn = document.getElementById('tab-' + t);
       btn.classList.toggle('active', t === tab);
       btn.setAttribute('aria-selected', t === tab);
     });
+    // 사용 안내 탭에서는 액션바 숨김
+    const actionBar = document.querySelector('.action-bar');
+    if (actionBar) actionBar.style.display = (tab === 'guide') ? 'none' : '';
     updateSaveInfo();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -1713,3 +2109,5 @@ table.chk tr.important .imp-badge {
   // ─── Init save info ───
   updateSaveInfo();
 </script>
+</body>
+</html>
