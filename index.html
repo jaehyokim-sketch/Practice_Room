@@ -759,6 +759,7 @@ table.chk tr.important .imp-badge {
   .form-panel { display: none !important; }
   .form-panel.active { display: block !important; }
   .guide-panel.active { display: none !important; }
+  .home-panel { display: none !important; }
   input, textarea, select {
     border-color: #aaa !important;
     background: #fff !important;
@@ -981,6 +982,203 @@ table.chk tr.important .imp-badge {
   border-top: 1px solid var(--border);
 }
 
+
+/* ══════════════════════════════
+   홈 화면 스타일
+══════════════════════════════ */
+.home-panel {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 0 48px;
+}
+.home-panel.active { display: flex; }
+.home-greeting {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.home-greeting h2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.home-greeting p {
+  font-size: 13px;
+  color: var(--secondary);
+  line-height: 1.6;
+}
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  width: 100%;
+  max-width: 680px;
+}
+@media (max-width: 560px) {
+  .home-grid { grid-template-columns: 1fr; max-width: 320px; gap: 14px; }
+}
+.home-card {
+  background: var(--doc-bg);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 20px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.12s;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+.home-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(26,58,107,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+.home-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 28px rgba(26,58,107,0.14);
+  transform: translateY(-3px);
+}
+.home-card:hover::before { opacity: 1; }
+.home-card:active { transform: translateY(-1px); }
+.home-card-icon {
+  font-size: 44px;
+  line-height: 1;
+  margin-bottom: 14px;
+  display: block;
+}
+.home-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+.home-card-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.home-card-items li {
+  font-size: 12px;
+  color: var(--secondary);
+  padding: 4px 0 4px 14px;
+  position: relative;
+  line-height: 1.45;
+  border-bottom: 1px solid var(--border);
+}
+.home-card-items li:last-child { border-bottom: none; }
+.home-card-items li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.home-card-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.hbadge-before { background: #dbeafe; color: #1e40af; }
+.hbadge-after  { background: #fee2e2; color: #991b1b; }
+.home-card-arrow {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+.home-card:hover .home-card-arrow { opacity: 1; }
+
+/* 뒤로가기 버튼 */
+.back-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  color: var(--header-text);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.back-btn:hover { background: rgba(255,255,255,0.25); }
+.back-btn svg { flex-shrink: 0; }
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em;
+}
+
+/* 서브탭 (섹션 내부) */
+.sub-tab-bar {
+  display: none;
+  gap: 2px;
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.sub-tab-bar.visible { display: flex; }
+.sub-tab-btn {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.70);
+  border: none;
+  border-radius: 4px 4px 0 0;
+  padding: 9px 12px 8px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sub-tab-btn .t-sub {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 400;
+  opacity: 0.7;
+  letter-spacing: 0.01em;
+  margin-top: 1px;
+}
+.sub-tab-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
+.sub-tab-btn.active {
+  background: var(--doc-bg);
+  color: var(--accent);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sub-tab-btn.active .t-sub { opacity: 0.6; }
+@media print {
+  .back-btn, .sub-tab-bar { display: none !important; }
+}
 </style>
 </head>
 <body>
@@ -988,32 +1186,39 @@ table.chk tr.important .imp-badge {
 <!-- ─── Site header + tab bar ─── -->
 <div class="site-header">
   <div class="site-header-top">
+    <button class="back-btn" id="back-btn" onclick="goHome()" aria-label="홈으로">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      홈
+    </button>
     <span class="site-title">원광대학교 한의과대학</span>
     <span class="site-univ">College of Korean Medicine</span>
+    <span class="section-label" id="section-label"></span>
   </div>
-  <div class="tab-bar" role="tablist">
-    <button class="tab-btn active" id="tab-lab1" onclick="switchTab('lab1')" role="tab" aria-selected="true">
-      공동실습실1 사용 신청서
+  <!-- 신청서 서브탭 -->
+  <div class="sub-tab-bar" id="subtab-apply" role="tablist">
+    <button class="sub-tab-btn active" id="tab-lab1" onclick="switchTab('lab1')" role="tab" aria-selected="true">
+      공동실습실1 신청서
     </button>
-    <button class="tab-btn" id="tab-clinical" onclick="switchTab('clinical')" role="tab" aria-selected="false">
-      임상술기센터 사용 신청서
-      <span class="t-sub">임상술기 1·3·5 / 세미나실</span>
+    <button class="sub-tab-btn" id="tab-clinical" onclick="switchTab('clinical')" role="tab" aria-selected="false">
+      임상술기센터 신청서
+      <span class="t-sub">1·3·5 / 세미나실</span>
     </button>
-    <button class="tab-btn" id="tab-report" onclick="switchTab('report')" role="tab" aria-selected="false">
-      공동실습 사용 결과 보고서
-      <span class="t-sub">사용 후 제출 필수</span>
-    </button>
-    <button class="tab-btn" id="tab-us-apply" onclick="switchTab('us-apply')" role="tab" aria-selected="false">
-      초음파영상장비 사용신청서
+    <button class="sub-tab-btn" id="tab-us-apply" onclick="switchTab('us-apply')" role="tab" aria-selected="false">
+      초음파 사용신청서
       <span class="t-sub">사용 전 제출</span>
     </button>
-    <button class="tab-btn" id="tab-us-report" onclick="switchTab('us-report')" role="tab" aria-selected="false">
-      초음파영상장비 사용 결과보고서
+  </div>
+  <!-- 사용일지 서브탭 -->
+  <div class="sub-tab-bar" id="subtab-report" role="tablist">
+    <button class="sub-tab-btn active" id="tab-report" onclick="switchTab('report')" role="tab" aria-selected="true">
+      공동실습 결과 보고서
       <span class="t-sub">사용 후 제출 필수</span>
     </button>
-    <button class="tab-btn" id="tab-guide" onclick="switchTab('guide')" role="tab" aria-selected="false">
-      사용 안내
-      <span class="t-sub">이용 방법 · 주의사항</span>
+    <button class="sub-tab-btn" id="tab-us-report" onclick="switchTab('us-report')" role="tab" aria-selected="false">
+      초음파 결과보고서
+      <span class="t-sub">사용 후 제출 필수</span>
     </button>
   </div>
 </div>
@@ -1022,9 +1227,57 @@ table.chk tr.important .imp-badge {
 <div class="page-wrap">
 
 <!-- ═══════════════════════════════════════════
+     홈 화면
+═══════════════════════════════════════════ -->
+<div class="form-panel home-panel active" id="panel-home">
+  <div class="home-greeting">
+    <h2>실습실 통합 양식</h2>
+    <p>원광대학교 한의과대학 · 경혈학교실 / 임상술기센터<br>아래 메뉴를 선택하여 양식을 작성하세요.</p>
+  </div>
+  <div class="home-grid">
+
+    <!-- 신청서 -->
+    <div class="home-card" onclick="goSection('apply')" role="button" tabindex="0" aria-label="신청서 작성">
+      <span class="home-card-icon">📋</span>
+      <div class="home-card-title">신청서</div>
+      <ul class="home-card-items">
+        <li>공동실습실1 사용 신청서 <span class="home-card-badge hbadge-before">사용 전</span></li>
+        <li>임상술기센터 사용 신청서 <span class="home-card-badge hbadge-before">사용 전</span></li>
+        <li>초음파영상장비 사용신청서 <span class="home-card-badge hbadge-before">사용 전</span></li>
+      </ul>
+      <span class="home-card-arrow">작성하기 →</span>
+    </div>
+
+    <!-- 사용일지 -->
+    <div class="home-card" onclick="goSection('report')" role="button" tabindex="0" aria-label="사용일지 작성">
+      <span class="home-card-icon">📝</span>
+      <div class="home-card-title">사용일지</div>
+      <ul class="home-card-items">
+        <li>공동실습 사용 결과 보고서 <span class="home-card-badge hbadge-after">사용 후</span></li>
+        <li>초음파영상장비 결과보고서 <span class="home-card-badge hbadge-after">사용 후</span></li>
+      </ul>
+      <span class="home-card-arrow">작성하기 →</span>
+    </div>
+
+    <!-- 사용안내 -->
+    <div class="home-card" onclick="goSection('guide')" role="button" tabindex="0" aria-label="사용 안내 보기">
+      <span class="home-card-icon">📖</span>
+      <div class="home-card-title">사용안내</div>
+      <ul class="home-card-items">
+        <li>이용 방법 안내</li>
+        <li>버튼 기능 설명</li>
+        <li>제출 방법 · 문의처</li>
+      </ul>
+      <span class="home-card-arrow">보기 →</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
      TAB 1: 공동실습실1 사용 신청서
 ═══════════════════════════════════════════ -->
-<div class="form-panel active" id="panel-lab1">
+<div class="form-panel" id="panel-lab1">
   <div class="doc-header">
     <div class="univ-line">원광대학교 한의과대학</div>
     <h1 class="doc-title">공동실습실1 사용 신청서</h1>
@@ -1956,23 +2209,81 @@ table.chk tr.important .imp-badge {
   });
   ['a-syear','b-syear'].forEach(id => { const el = document.getElementById(id); if(el) el.value = yr; });
 
-  // ─── Tab switch ───
+  // ─── Navigation ───
+  const ALL_FORM_TABS = ['lab1','clinical','report','us-apply','us-report'];
+  const SECTION_TABS = {
+    apply:  ['lab1','clinical','us-apply'],
+    report: ['report','us-report'],
+    guide:  []
+  };
+  const SECTION_FIRST = { apply: 'lab1', report: 'report' };
+
+  let currentSection = 'home';
   let currentTab = 'lab1';
-  const ALL_TABS = ['lab1','clinical','report','us-apply','us-report','guide'];
+
+  function goHome() {
+    currentSection = 'home';
+    // 모든 패널 비활성화
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-home').classList.add('active');
+    // 서브탭 숨김
+    document.querySelectorAll('.sub-tab-bar').forEach(b => b.classList.remove('visible'));
+    // 뒤로가기 숨김
+    document.getElementById('back-btn').style.display = 'none';
+    // 섹션 라벨 지우기
+    document.getElementById('section-label').textContent = '';
+    // 액션바 숨김
+    document.querySelector('.action-bar').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goSection(section) {
+    currentSection = section;
+    // 홈 패널 숨김
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    // 서브탭 모두 숨김 후 해당 서브탭 표시
+    document.querySelectorAll('.sub-tab-bar').forEach(b => b.classList.remove('visible'));
+    // 뒤로가기 표시
+    document.getElementById('back-btn').style.display = 'flex';
+    // 섹션 라벨
+    const labels = { apply: '신청서', report: '사용일지', guide: '사용안내' };
+    document.getElementById('section-label').textContent = labels[section];
+
+    if (section === 'guide') {
+      document.getElementById('panel-guide').classList.add('active');
+      document.querySelector('.action-bar').style.display = 'none';
+    } else {
+      document.getElementById('subtab-' + section).classList.add('visible');
+      document.querySelector('.action-bar').style.display = '';
+      switchTab(SECTION_FIRST[section]);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function switchTab(tab) {
     currentTab = tab;
-    ALL_TABS.forEach(t => {
-      document.getElementById('panel-' + t).classList.toggle('active', t === tab);
-      const btn = document.getElementById('tab-' + t);
-      btn.classList.toggle('active', t === tab);
-      btn.setAttribute('aria-selected', t === tab);
+    // 패널 전환
+    ALL_FORM_TABS.forEach(t => {
+      const panel = document.getElementById('panel-' + t);
+      if (panel) panel.classList.toggle('active', t === tab);
     });
-    // 사용 안내 탭에서는 액션바 숨김
-    const actionBar = document.querySelector('.action-bar');
-    if (actionBar) actionBar.style.display = (tab === 'guide') ? 'none' : '';
+    // 해당 서브탭 버튼 활성화
+    const subBtns = document.querySelectorAll('.sub-tab-btn');
+    subBtns.forEach(btn => {
+      const active = btn.id === 'tab-' + tab;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active);
+    });
     updateSaveInfo();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // 키보드 접근성 (홈 카드)
+  document.querySelectorAll('.home-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
 
   // ─── Room / Equipment checkbox style ───
   function roomStyle(cb)  { cb.closest('.room-option').classList.toggle('checked', cb.checked); }
@@ -1990,6 +2301,7 @@ table.chk tr.important .imp-badge {
 
   // ─── Save info display ───
   function updateSaveInfo() {
+    if (currentSection === 'home' || currentSection === 'guide') return;
     const si = document.getElementById('save-info');
     try {
       const raw = localStorage.getItem(STORE_PREFIX + currentTab);
@@ -2106,7 +2418,8 @@ table.chk tr.important .imp-badge {
     showToast('양식이 초기화되었습니다.');
   }
 
-  // ─── Init save info ───
+  // ─── Init ───
+  document.querySelector('.action-bar').style.display = 'none';
   updateSaveInfo();
 </script>
 </body>
